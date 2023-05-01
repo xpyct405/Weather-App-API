@@ -4,10 +4,11 @@
     box-sizing: border-box;
  }
  body {
-    background: linear-gradient(332deg, rgb(1, 13, 184), rgb(17, 126, 177));
+    background: linear-gradient(0.5turn, black, rgb(17, 126, 177), black);
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
  }
+
  body i { font-family:'FontAwesome'!important;}
 
 .container {
@@ -40,7 +41,7 @@ header {
 #input, #search-btn {
    border-radius: 25px 0 0 25px;
    outline: none;
-   padding: 10px 20px;
+   padding: 10px 20px 10px 20px;
    border: 0px;
    font-size: 18px;
    transition: min-width 1s ease;
@@ -53,43 +54,80 @@ header {
    font-family: 'Poppins', serif;
    font-size: 16px;
    font-weight: 400;
-   background: rgb(12, 26, 218);
+   background: rgba(72, 84, 250, 1);
 }
 #search-btn:hover {
-   background: rgb(72, 84, 250);
+   background: rgba(72, 84, 250, .5);
 }
 #search-btn i {
-   display: none;
+   padding: 0 15px 0 0;
+}
+#search-btn span {
+   font-size: 18px;
+   font-weight: 500;
 }
 
+.weather {
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   max-width: 800px;
+   height: 80vh;
+   align-items:center;
+   justify-content: center;
+}
 
-
-
-
-
+ .main, .details {
+   display: flex;
+   padding: 20px;
+   flex-direction: row;
+   align-items:center;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+   width: 100%;
+   font-weight: bold;
+   color: #fff;
+   text-transform: uppercase;
+ }
 
 .main {
-   display: block;
- }
- 
+   font-size: 98px;
+}
+.details {
+   margin-top: 50px;
+   width: 80%;
+   font-size: 20px;
+   font-weight: 500;
+}
+
+.humidity, .wind, .pressure {
+   font-size: 28px;
+}
 
 
  @media screen and (max-width: 800px) {
    #input {
       max-width: 200px;
    }
+   .main {
+      font-size: 70px;
+   }
+   .details {
+      width: 100%;
+      font-size: 20px;
+   }
  }
 
 
- @media screen and (max-width: 720px) {
+ @media screen and (max-width: 740px) {
    #input {
       max-width: 160px;
    }
+   #search-btn {
+      padding: 10px 10px 10px 20px;
+   }
    #search-btn span {
       display: none;
-   }
-   #search-btn i {
-      display: block;
    }
    h2 span{
       display: none;
