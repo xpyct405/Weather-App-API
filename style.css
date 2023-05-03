@@ -93,12 +93,19 @@ header {
 .main {
    font-size: 98px;
 }
+.temp {
+   padding-right: 20px;
+}
+.city {
+   padding-left: 20px;
+}
 .details {
    margin-top: 50px;
    width: 80%;
    font-size: 20px;
    font-weight: 500;
 }
+
 
 .humidity, .wind, .pressure {
    font-size: 28px;
@@ -111,6 +118,7 @@ header {
    }
    .main {
       font-size: 70px;
+      padding: 20px 40px;
    }
    .details {
       width: 100%;

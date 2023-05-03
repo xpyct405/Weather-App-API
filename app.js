@@ -11,7 +11,7 @@ async function checkWeather(city) {
   var data = await api.json();
 
 
-  console.log(data);
+  // console.log(data);
   document.querySelector(".city").innerHTML = data.name;
   document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + " °c";
   document.querySelector(".humidity").innerHTML = data.main.humidity + " %";
@@ -22,25 +22,38 @@ async function checkWeather(city) {
 
 
 
+// Разрешим ввод только букв рус, англ и пробела
+document.querySelector("#input").addEventListener('keydown', function(e) {
+  if (e.key.match(/[^a-zA-ZА-Яа-яЁё' ']/)) return e.preventDefault()
+}); // Будет перехватывать все числа при ручном вводе. 
+
+document.querySelector("#input").addEventListener('input', function(e) {
+  this.value = this.value.replace(/[^a-zA-ZА-Яа-яЁё' ']/g, "")
+}) //Если ввели данные через копипаст или автозаполнение
+
+
+
+
 searchBtn.addEventListener("click", () => {
-  if (searchBox.value != undefined ?? searchBox.value != NaN  ) {
-    checkWeather(searchBox.value);
-  } else {
+  if (searchBox.value == '' || searchBox.value == undefined || searchBox.value == NaN  ) {
     console.log('searchBox.value = эт чё');
+  } else {
+    checkWeather(searchBox.value);
+    
   }
 // Reset input.value
-searchBox.value = '';
+// searchBox.value = '';
 });
 
 
-searchBox.addEventListener('keydown', (event) => {
-  if (event.key == 'Enter') 
-  checkWeather(searchBox.value);
-  searchBox.value = '';
-})
+// searchBox.addEventListener('keydown', (event) => {
+//   if (event.key == 'Enter') 
+//   checkWeather(searchBox.value);
+//   // searchBox.value = '';
+// })
 
 
-checkWeather('tambov');
+checkWeather('Tambov');
 
 
 
