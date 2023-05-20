@@ -13,10 +13,19 @@ async function checkWeather(city) {
 
   // console.log(data);
   document.querySelector(".city").innerHTML = data.name;
+  console.log(!Boolean(data.name));
+
+  if (!Boolean(data.name)) {
+    let changeDisplay = document.querySelector('.atention').style.display = 'block';
+    setInterval(changeDisplay, 3000)
+    return
+  }
+
   document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + " °c";
   document.querySelector(".humidity").innerHTML = data.main.humidity + " %";
   document.querySelector(".wind").innerHTML = data.wind.speed + " км/ч";
   document.querySelector(".pressure").innerHTML = Math.round( eval(data.main.pressure * 0.750062) ) + " мм рт. ст.";
+
   // Очистим содержимое input
   searchBox.value = '';
 }
@@ -24,56 +33,54 @@ async function checkWeather(city) {
 
 
 // Разрешим ввод только букв рус, англ, пробела и тире
+// Будет перехватывать все числа при ручном вводе. 
 searchBox.addEventListener('keydown', function(e) {
   if (e.key.match(/[^a-zA-ZА-Яа-яЁё' '-]/)) return e.preventDefault()
-}); // Будет перехватывать все числа при ручном вводе. 
+}); 
 
+//Если ввели данные через копипаст или автозаполнение
 searchBox.addEventListener('input', function(e) {
   this.value = this.value.replace(/[^a-zA-ZА-Яа-яЁё' '-]/g, "")
-}) //Если ввели данные через копипаст или автозаполнение
+}) 
 
 
-
+// console.log(searchBox.value);
+// console.log(Boolean(1));
 
 // Разрешим производить поиск при клике по Enter
 searchBox.addEventListener('keydown', (event) => {
   if (event.key == 'Enter') {
-    if (document.querySelector(".city").textContent === "undefined") {
-      alert(`We can't find ${checkbox.value} city! Check or retry one more time.`)
+    // console.log(document.querySelector(".city").innerHTML);
+    // console.log(Boolean(document.querySelector(".city").innerHTML));
+
+    if (!document.querySelector(".city").textContent) {
+      alert(`We can't find ${searchBox.value} city! Check or retry one more time.`)
       console.log(document.querySelector(".city").textContent);
     }
     else {
       checkWeather(searchBox.value);
-      console.log(document.querySelector(".city").textContent);
+      // console.log(document.querySelector(".city").textContent);
     }
   }
 })
 
-
-// Разрешим производить поиск при клике по Enter
+// Разрешим производить поиск при клике ЛКМ по кнопке
 searchBtn.addEventListener("click", () => {
-  if (document.querySelector(".city").textContent === "undefined") {
-    alert(`We can't find ${checkbox.value} city! Check or retry one more time.`)
-    console.log(document.querySelector(".city").textContent);
+  if (!document.querySelector(".city").textContent) {
+    alert(`We can't find ${searchBox.value} city! Check or retry one more time.`)
+    // console.log(document.querySelector(".city").textContent);
   } else {
     checkWeather(searchBox.value);   
-    console.log(document.querySelector(".city").textContent);
+    // console.log(document.querySelector(".city").textContent);
   }
 });
 
 // searchBox.value == '' || searchBox.value == undefined || searchBox.value == NaN || 
 
 // Напишем функцию по чистке input=text через 3секунды
-function inputReset() {
-  searchBox.value = '';
-}
-
-
-
-
-
-
-
+// function inputReset() {
+//   searchBox.value = '';
+// }
 
 
 
@@ -89,3 +96,6 @@ checkWeather('Tambov');
 // window.addEventListener('load', defaultCity())
 
       
+// let newItem = document.createElement("div");
+// newItem.className = "new-item";
+// document.querySelector('.parent').appendChild(newItem);

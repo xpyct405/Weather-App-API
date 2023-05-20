@@ -37,7 +37,25 @@ header {
 
 .search-box {
    display: flex;
+   position: relative;
 }
+
+.atention {
+   display: none;
+   position: absolute;
+   color:#fff;
+   font-size: 22px;
+   padding: 10px 20px;
+   background-color: rgba(204, 43, 43, 0.8);
+   border-radius: 10px;
+   width: 240px;
+   height: 80px;
+   text-align: center;
+   left: 10px;
+   top: 52px;
+}
+
+
 #input, #search-btn {
    border-radius: 25px 0 0 25px;
    outline: none;
@@ -71,10 +89,9 @@ header {
    margin: auto;
    display: flex;
    flex-direction: column;
-   max-width: 800px;
    height: 80vh;
    align-items:center;
-   justify-content: center;
+
 }
 
  .main, .details {
@@ -83,7 +100,7 @@ header {
    flex-direction: row;
    align-items:center;
    flex-wrap: nowrap;
-   justify-content: space-between;
+   justify-content: space-evenly;
    width: 100%;
    font-weight: bold;
    color: #fff;
@@ -91,7 +108,7 @@ header {
  }
 
 .main {
-   font-size: 98px;
+   font-size: 88px;
 }
 .temp {
    padding-right: 20px;
